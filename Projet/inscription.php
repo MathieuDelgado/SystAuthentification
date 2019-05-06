@@ -32,7 +32,7 @@ if(
         $errors[] = 'pseudo pas bon';
     }
 
-    if(!preg_match('#^(m|f){1}$#i', $_POST['sex'])){
+    if(!preg_match('#^m|f$#i', $_POST['sex'])){
         $errors[] = 'sex pas bon';
     }
 
@@ -75,7 +75,11 @@ if(
         ));
             // Si la dernière requête a affecté au moins une ligne, alors le compte a bien été créé, sinon erreur
             if($response->rowCount() > 0){
-                $success = true;
+                $success="Vous avez bien envoyé le formulaire";
+                $_SESSION['account']['pseudo'] = $_POST['pseudo'];
+                $_SESSION['account']['birthdate'] = $_POST['birthdate'];
+                $_SESSION['account']['email'] = $_POST['email'];
+                $_SESSION['account']['ip'] = $_SERVER['REMOTE_ADDR'];
             } else {
                 $errors[] = 'Problème avec la BDD';
             }
@@ -83,19 +87,9 @@ if(
             // Fermeture de la requête
             $response->closeCursor();
 
-        $success="Vous avez bien envoyé le formulaire";
-        $_SESSION['account']['pseudo'] = $_POST['pseudo'];
-        $_SESSION['account']['birthdate'] = $_POST['birthdate'];
-        $_SESSION['account']['email'] = $_POST['email'];
-        $_SESSION['account']['ip'] = $_SERVER['REMOTE_ADDR'];
  
     }
 }
-
-
-
-
-
 
 ?>
 

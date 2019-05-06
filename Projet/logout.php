@@ -6,10 +6,22 @@ session_start();
 // Inclusion du fichier qui contrôle si l'adresse IP a changé (anti vol de session)
 require_once 'security.php';
 
+    ?>
 
 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Logout</title>
+</head>
+<body>
+<?php 
 
+include 'menu.php';
 // Si on est connecté, on détruit account dans la session (les variables n'existant plus on considère cet état comme "déconnecté"), sinon on crée une erreur car la personne n'est pas connectée et ne peut donc pas se déconnecter
 if(isset($_SESSION['account'])){
     unset($_SESSION['account']);
@@ -23,19 +35,6 @@ if(isset($_SESSION['account'])){
     } else {
         echo '<p style="color:green;">Vous êtes bien déconnecté !</p>';
     }
-    ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<?php 
-
-include 'menu.php';
 
 ?>
     

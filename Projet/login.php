@@ -61,12 +61,15 @@ if(
 </head>
 <body>
 <?php
+
     include 'menu.php';
+
 // Si $success existe, c'est que le formulaire a été traité sans erreur, donc on affiche le message de succès. Sinon dans le else, on affiche le formulaire (du coup le formulaire sera caché si le $success existe)
 if(isset($success)){
     echo '<p style="color:green;">' . $success . '</p>';
 } else {
 ?>
+
     <form action="login.php" method="POST" >
         <input type="text" name="pseudo" placeholder="pseudo">
         <input type="text" name="uPassword" placeholder="uPassword">

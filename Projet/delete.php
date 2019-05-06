@@ -1,11 +1,11 @@
 <?php 
 include 'bdd.php';
 
+echo $_POST['id'];
 
-
-$response = $bdd->prepare("DELETE * FROM users WHERE id = :id");
+$response = $bdd->prepare("DELETE FROM users WHERE id = :id");
 $response ->execute(array(
-    'id'=>$_GET['id']
+    'id'=>$_POST['id']
 ));
 
 

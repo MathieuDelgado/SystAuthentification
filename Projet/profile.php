@@ -68,12 +68,7 @@ if (
 
 }
 
-
-//$response = $bdd->prepare("SELECT `pseudo`, `birthdate`, `email` FROM users WHERE pseudo = ")
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -89,24 +84,20 @@ if (
 
 include 'menu.php';
 
-echo '<p>bonjour, ' . htmlspecialchars($_SESSION['account']['pseudo']) . ' vous etes né(e) le ' . htmlspecialchars($_SESSION['account']['birthdate']) . '.</p>
- <p> votre email de contact est: ' . htmlspecialchars($_SESSION['account']['email']) . '</p>';
+echo '<p>Hello and welcome, ' . htmlspecialchars($_SESSION['account']['pseudo']) . ' you are born in ' . htmlspecialchars($_SESSION['account']['birthdate']) . '.</p>
+ <p> your email is: ' . htmlspecialchars($_SESSION['account']['email']) . '</p>';
 
 ?>
 
-<h1>Write an article</h1>
-<form action="profile.php" method="POST">
-    <label for="title">Title</label>
-    <input type="text" name="title" id="title" placeholder="Title" require>
-    <label for="subject">Subject</label>
-    <input type="text" name="subject" id="subject" placeholder="Subject" require>
-    <label for="text">Text</label>
-    <input type="text" name="text" id="text" placeholder="Your text..." require>
-    <input type="submit" value="Create my article !">
-</form>
-
-
-
-
+    <h1>Write an article</h1>
+    <form action="profile.php" method="POST">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" placeholder="Title" require>
+        <label for="subject">Subject</label>
+        <input type="text" name="subject" id="subject" placeholder="Subject" require>
+        <label for="text">Text</label>
+        <input type="text" name="text" id="text" placeholder="Your text..." require>
+        <input type="submit" value="Create my article !">
+    </form>
 </body>
 </html>

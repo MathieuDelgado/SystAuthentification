@@ -1,5 +1,12 @@
 <?php 
+// Nécessaire pour utiliser les variables de session
+session_start();
+
+// Inclusion du fichier qui contrôle si l'adresse IP a changé (anti vol de session)
+require_once 'security.php';
+
 require 'bdd.php';
+
 $response = $bdd->prepare("SELECT id, name, pseudo, email FROM users");
 
 $response->execute(array());
@@ -12,17 +19,13 @@ if(count($accounts) == 0){
     
 }
 
+// require 'bdd.php';
+// $response = $bdd->prepare("DELETE FROM users WHERE  ");
+// $response->execute(array(
+//     'pseudo' =>$_POST['suppr']
+// ));
 
-
-/*require 'bdd.php';
-$response = $bdd->prepare("DELETE * FROM users WHERE  ");
-$response->execute(array(
-    'pseudo' =>$_POST['suppr']
-));
-
-$account = $response->fetch(PDO::FETCH_ASSOC);*/
-
-
+//$account = $response->fetch(PDO::FETCH_ASSOC);
 
 ?>
 <!DOCTYPE html>
@@ -34,7 +37,7 @@ $account = $response->fetch(PDO::FETCH_ASSOC);*/
     <title>Document</title>
 </head>
 <body>
-
+    <?php include 'menu.php';  ?>
     <table>
     <tr>
         <th>id</th>
@@ -45,22 +48,19 @@ $account = $response->fetch(PDO::FETCH_ASSOC);*/
     <?php
         // Pour chaque fruit dans $fruits, on crée une nouvelle ligne dans le tableau
     if(!isset($error)){  
-        echo "<form action='admin.php' method='GET'>";
+        echo "<form action='delete.php' method='POST'>";
        
         foreach($accounts as $account){
-            
             echo '
             <tr>
-                <td> <input type="hidden" name="id" value="' . $account['id'] . '"> ' . $account['id'] . ' </td>
+                <td>' . ($account['id']) . ' </td>
                 <td>' . htmlspecialchars($account['name']) . '</td>
                 <td>' . htmlspecialchars($account['pseudo']) . '</td>
                 <td>' . htmlspecialchars($account['email']) . '</td>
                 <td>' ?> 
                 <a href="delete.php"><input type="submit" value="Terminate"></a> 
                  <?php
-              
-                 
-                 
+                              
                  '</td>
            </tr>';
         }
@@ -69,9 +69,6 @@ $account = $response->fetch(PDO::FETCH_ASSOC);*/
             echo '<p style="color:red;">' . $error . '</p>';
         }
 
-
-       
-        
         ?>
     </table>
 
